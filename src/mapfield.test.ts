@@ -3,8 +3,8 @@ import 'mocha';
 
 import { MapField } from './mapfield'
 
-describe('MapField', () => {
-  describe('Init', () => {
+describe(`MapField`, () => {
+  describe(`Init`, () => {
     it(`should create a mapfield`, () => {
       let mapfield:MapField = new MapField();
       should(mapfield).be.ok();
@@ -18,7 +18,7 @@ describe('MapField', () => {
       ])
     })
   })
-  describe('Play', () => {
+  describe(`Play`, () => {
     it(`should insert 'X' on mapfield`, () => {
       let mapfield:MapField = new MapField();
       should(mapfield.play(0, 0, 'X')).be.ok();
