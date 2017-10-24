@@ -10,6 +10,7 @@ export class MapField {
   constructor() {}
 
   get map():Player[][] { return this._map }
+  set map(map:Player[][]) { this._map = map }
 
   public display(): void {
     console.log('\x1Bc');
@@ -51,14 +52,14 @@ export class MapField {
     let w:boolean = true;
 
     for (; y < this._map.length && x < this._map[y].length; y++, x++) {
-      if (this._map[y][x] !== p) {
+      if (this._map[y][x] != p) {
         w = false;
       }
     }
     s += w ? 1 : 0;
     w = true;
-    for (x = this._map[0].length - 1, y = 0; y < this._map.length && x > 0; y++, x--) {
-      if (this._map[y][x] !== p) {
+    for (x = this._map[0].length - 1, y = 0; y < this._map.length && x >= 0; y++, x--) {
+      if (this._map[y][x] != p) {
         w = false;
       }
     }
@@ -69,10 +70,10 @@ export class MapField {
   private scoreColumns(p:Player) : number {
     let s:number = 0;
     for (let x:number = 0; x < this._map[0].length; x++) {
-      if (this._map[0][x] === p) {
+      if (this._map[0][x] == p) {
         let w:boolean = true;
         for (let y:number = 1; y < this._map.length; y++) {
-          if (this._map[y][x] !== p) {
+          if (this._map[y][x] != p) {
             w = false;
             break;
           }
