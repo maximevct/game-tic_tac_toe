@@ -1,9 +1,10 @@
 import * as should from 'should';
 import 'mocha';
 
+import { MapField } from './mapfield'
+
 describe('Index', () => {
-  it('should work', (done) => {
-    should(4).equal(3);
-    done();
+  it('toto', () => {
+    should(true).be.ok();
   })
 })
