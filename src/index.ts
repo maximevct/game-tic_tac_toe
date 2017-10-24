@@ -13,7 +13,7 @@ let players:string[] = ['X', 'O'];
 let iPlayer:number = 0;
 
 function makePrompt ():void {
-  let p:string = 'Player ['+ players[iPlayer] +'] > ';
+  let p:string = `Player [${players[iPlayer]}] > `;
   cl.setPrompt(p);
 };
 function togglePlayer ():void { iPlayer += iPlayer === 1 ? -1 : 1; }
