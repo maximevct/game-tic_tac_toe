@@ -1,0 +1,30 @@
+{
+  "name": "tic_tact_toe",
+  "version": "1.0.0",
+  "description": "A tic tac toe game",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w bin/index.test.js",
+    "start": "node bin/index.js",
+    "build": "tsc index.tcs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/twiggeek/game-tictactoe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/twiggeek/game-tictactoe/issues"
+  },
+  "homepage": "https://gitlab.com/twiggeek/game-tictactoe#README",
+  "dependencies": {
+    "axel": "0.0.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.46",
+    "mocha": "^4.0.1",
+    "should": "^13.1.2"
+  }
+}
