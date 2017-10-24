@@ -4,6 +4,7 @@
       "node",
       "mocha"
     ],
+    "target": "es2017",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
