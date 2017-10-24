@@ -1,4 +1,5 @@
 import { MapField } from './mapfield';
+import { Player } from './player';
 
 let mapfield:MapField = new MapField();
 
@@ -9,11 +10,11 @@ const cl = readline.createInterface({
   output : process.stdout
 });
 
-let players:string[] = ['X', 'O'];
+let players:Player[] = [new Player('X'), new Player('O')];
 let iPlayer:number = 0;
 
 function makePrompt ():void {
-  let p:string = `Player [${players[iPlayer]}] > `;
+  let p:string = `Player [${players[iPlayer].name}] (line col)> `;
   cl.setPrompt(p);
 };
 function togglePlayer ():void { iPlayer += iPlayer === 1 ? -1 : 1; }
@@ -23,14 +24,14 @@ makePrompt();
 cl.prompt();
 
 cl.on('line', (line:string) => {
-  let pos:number[] = line.split(' ').map((c) => parseInt(c, 10));
+  let pos:number[] = line.split(' ').map((c) => parseInt(c, 10) - 1);
   if (!mapfield.play(pos[0], pos[1], players[iPlayer])) {
     console.log('ERROR: You cannot play this case');
   }
   else {
     mapfield.display();
     if (mapfield.score(players[iPlayer]) > 0) {
-      console.log('Player [%s] won !', players[iPlayer]);
+      console.log('Player [%s] won !', players[iPlayer].name);
       process.exit(0);
     }
     togglePlayer();
