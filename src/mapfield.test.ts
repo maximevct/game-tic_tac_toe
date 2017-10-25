@@ -107,6 +107,32 @@ describe('MapField', () => {
       let mapfield:MapField = new MapField();
       should(mapfield.play(0, 3, new Player('X'))).not.be.ok();
     })
+    it('should not be able to play when map is filled', () => {
+      let mapfield:MapField = new MapField();
+      let p1:Player = new Player('X');
+
+      mapfield.map = [
+        [p1, p1, p1],
+        [p1, p1, p1],
+        [p1, p1, p1]
+      ];
+      should(mapfield.play(0, 0, p1)).not.be.ok();
+    })
+    it('should not be able to play on another player', () => {
+      let mapfield:MapField = new MapField();
+      let p1:Player = new Player('X');
+      let p2:Player = new Player('O');
+      
+      mapfield.play(0, 0, p1);
+      should(mapfield.play(0, 0, p2)).not.be.ok();
+    })
+    it('should not be able to play on himself', () => {
+      let mapfield:MapField = new MapField();
+      let p1:Player = new Player('X');
+      
+      mapfield.play(0, 0, p1);
+      should(mapfield.play(0, 0, p1)).not.be.ok();
+    })
   })
   describe('Score', () => {
     it('should get the score of the map', () => {
@@ -158,6 +184,43 @@ describe('MapField', () => {
         [null, p1, p1]
       ];
       should(mapfield.score(p1)).equal(2);
+    })
+  })
+  describe('getMoves', () => {
+    it('should return 1 possible move for the game', () => {
+      let mapfield:MapField = new MapField();
+      let p1:Player = new Player('X');
+
+      mapfield.map = [
+        [null, p1, p1],
+        [p1  , p1, p1],
+        [p1  , p1, p1]
+      ];
+      let moves = mapfield.getMoves();
+      should(moves).have.lengthOf(1)
+      should(moves).deepEqual([{ x : 0, y : 0 }]);
+    })
+    it('should return 2 possible moves for the game', () => {
+      let mapfield:MapField = new MapField();
+      let p1:Player = new Player('X');
+
+      mapfield.map = [
+        [null, p1, p1  ],
+        [p1  , p1, p1  ],
+        [p1  , p1, null]
+      ];
+      let moves = mapfield.getMoves();
+      should(moves).have.lengthOf(2)
+      should(moves).deepEqual([
+        { x : 0, y : 0 },
+        { x : 2, y : 2 },
+      ]);
+    })
+    it('should return 9 possible moves for the game', () => {
+      let mapfield:MapField = new MapField();
+      let moves = mapfield.getMoves();
+
+      should(moves).have.lengthOf(9)
     })
   })
 })
