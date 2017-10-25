@@ -5,7 +5,7 @@ node_js:
 
 before_script:
   - npm install -g typescript
-script: tsc
+  - tsc
 
 cache:
   directories:
