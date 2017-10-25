@@ -10,8 +10,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "outDir": "bin",
-    "watch": true
+    "outDir": "bin"
   },
   "include": ["src/*.ts"],
   "exclude": ["node_modules"]
