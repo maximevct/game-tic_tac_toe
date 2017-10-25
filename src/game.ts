@@ -3,6 +3,7 @@ import { Player } from './player';
 export class Game {
   private _name   :string   = 'Tic Tac Toe';
   private _players:Player[] = [];
+  public verbose:boolean    = true;
 
   constructor(...players:Player[]) {
     this._players = players;
@@ -10,4 +11,8 @@ export class Game {
 
   get name():string      { return this._name    }
   get players():Player[] { return this._players }
+
+  play():void {
+
+  }
 }

@@ -34,4 +34,21 @@ describe('Game', () => {
       should(g.players[1].name).equal('Player 2');
     })
   })
+  describe('Verbose setting', () => {
+    it('should get the default verbose setting', () => {
+      let p1:Player = new Player('Player 1');
+      let p2:Player = new Player('Player 2');
+      let g:Game    = new Game(p1, p2);
+
+      should(g.verbose).be.true();
+    })
+    it('should modify the verbose setting', () => {
+      let p1:Player = new Player('Player 1');
+      let p2:Player = new Player('Player 2');
+      let g:Game    = new Game(p1, p2);
+
+      g.verbose = false;
+      should(g.verbose).be.false();
+    })
+  })
 })
