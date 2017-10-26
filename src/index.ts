@@ -10,7 +10,7 @@ const cl = readline.createInterface({
   output : process.stdout
 });
 
-let players:Player[] = [new Player('X'), new Player('O')];
+let players:Player[] = [new Player('1', 'X'), new Player('2', 'O')];
 let iPlayer:number = 0;
 
 function makePrompt ():void {
