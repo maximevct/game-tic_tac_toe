@@ -1,5 +1,10 @@
 import { Player } from './player';
 
+export interface Move {
+  x:number,
+  y:number
+}
+
 export class MapField {
   private _map:Player[][] = [
     [null, null, null],
@@ -25,13 +30,13 @@ export class MapField {
     console.log('╚═══╩═══╩═══╝')
   }
 
-  public play(y:number, x:number, p:Player):boolean {
-    if ( y >= this.map.length    || y < 0
-      || x >= this.map[y].length || x < 0
-      || this.map[y][x] !== null)  {
+  public play(m:Move, p:Player):boolean {
+    if ( m.y >= this.map.length      || m.y < 0
+      || m.x >= this.map[m.y].length || m.x < 0
+      || this.map[m.y][m.x] !== null)  {
       return false;
     }
-    this.map[y][x] = p;
+    this.map[m.y][m.x] = p;
     return true;
   }
 
@@ -41,13 +46,13 @@ export class MapField {
       + this.scoreDiags(p);
   }
 
-  public getMoves():object[] {
-    let moves:object[] = [];
+  public getMoves():Move[] {
+    let moves:Move[] = [];
 
     for (let y:number = 0; y < this.map.length; y++) {
       for (let x:number = 0; x < this.map[y].length; x++) {
         if (!this.map[y][x]) {
-          moves.push({x, y})
+          moves.push({y, x})
         }
       }
     }

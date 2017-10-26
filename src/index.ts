@@ -25,7 +25,7 @@ cl.prompt();
 
 cl.on('line', (line:string) => {
   let pos:number[] = line.split(' ').map((c) => parseInt(c, 10) - 1);
-  if (!mapfield.play(pos[0], pos[1], players[iPlayer])) {
+  if (!mapfield.play({x : pos[0], y : pos[1]}, players[iPlayer])) {
     console.log('ERROR: You cannot play this case');
   }
   else {

@@ -23,13 +23,13 @@ describe('MapField', () => {
     it('should play on the mapfield', () => {
       let mapfield:MapField = new MapField();
 
-      should(mapfield.play(0, 0, new Player('X'))).be.ok();
+      should(mapfield.play({x: 0, y : 0}, new Player('X'))).be.ok();
     })
     it('should player 1 play on 0, 0', () => {
       let mapfield:MapField = new MapField();
       let p:Player = new Player('X');
 
-      mapfield.play(0, 0, p)
+      mapfield.play({x: 0, y : 0}, p)
       should(mapfield.map).deepEqual([
         [p   , null, null],
         [null, null, null],
@@ -40,7 +40,7 @@ describe('MapField', () => {
       let mapfield:MapField = new MapField();
       let p:Player = new Player('X');
 
-      mapfield.play(1, 0, p)
+      mapfield.play({x: 1, y : 0}, p)
       should(mapfield.map).deepEqual([
         [null, null, null],
         [p   , null, null],
@@ -51,7 +51,7 @@ describe('MapField', () => {
       let mapfield:MapField = new MapField();
       let p:Player = new Player('X');
 
-      mapfield.play(0, 1, p)
+      mapfield.play({x: 0, y : 1}, p)
       should(mapfield.map).deepEqual([
         [null, p   , null],
         [null, null, null],
@@ -62,7 +62,7 @@ describe('MapField', () => {
       let mapfield:MapField = new MapField();
       let p:Player = new Player('X');
 
-      mapfield.play(2, 1, p)
+      mapfield.play({x: 2, y : 1}, p)
       should(mapfield.map).deepEqual([
         [null, null, null],
         [null, null, null],
@@ -74,8 +74,8 @@ describe('MapField', () => {
       let p1:Player = new Player('X');
       let p2:Player = new Player('X');
 
-      mapfield.play(0, 0, p1)
-      mapfield.play(1, 1, p2)
+      mapfield.play({x: 0, y : 0}, p1)
+      mapfield.play({x: 1, y : 1}, p2)
       should(mapfield.map).deepEqual([
         [p1  , null, null],
         [null, p2  , null],
@@ -87,25 +87,25 @@ describe('MapField', () => {
       let p1:Player = new Player('X');
       let p2:Player = new Player('X');
 
-      mapfield.play(0, 0, p1)
-      mapfield.play(1, 1, p2)
+      mapfield.play({x: 0, y : 0}, p1)
+      mapfield.play({x: 1, y : 1}, p2)
       should(mapfield.map[0][0]).not.equal(p2)
     })
     it('should not be able to play on -1, 0', () => {
       let mapfield:MapField = new MapField();
-      should(mapfield.play(-1, 0, new Player('X'))).not.be.ok();
+      should(mapfield.play({x: -1, y : 0}, new Player('X'))).not.be.ok();
     })
     it('should not be able to play on 0, -1', () => {
       let mapfield:MapField = new MapField();
-      should(mapfield.play(0, -1, new Player('X'))).not.be.ok();
+      should(mapfield.play({x: 0, y : -1}, new Player('X'))).not.be.ok();
     })
     it('should not be able to play on 3, 0', () => {
       let mapfield:MapField = new MapField();
-      should(mapfield.play(3, 0, new Player('X'))).not.be.ok();
+      should(mapfield.play({x: 3, y : 0}, new Player('X'))).not.be.ok();
     })
     it('should not be able to play on 0, 3', () => {
       let mapfield:MapField = new MapField();
-      should(mapfield.play(0, 3, new Player('X'))).not.be.ok();
+      should(mapfield.play({x: 0, y : 3}, new Player('X'))).not.be.ok();
     })
     it('should not be able to play when map is filled', () => {
       let mapfield:MapField = new MapField();
@@ -116,22 +116,22 @@ describe('MapField', () => {
         [p1, p1, p1],
         [p1, p1, p1]
       ];
-      should(mapfield.play(0, 0, p1)).not.be.ok();
+      should(mapfield.play({x: 0, y : 0}, p1)).not.be.ok();
     })
     it('should not be able to play on another player', () => {
       let mapfield:MapField = new MapField();
       let p1:Player = new Player('X');
       let p2:Player = new Player('O');
       
-      mapfield.play(0, 0, p1);
-      should(mapfield.play(0, 0, p2)).not.be.ok();
+      mapfield.play({x: 0, y : 0}, p1);
+      should(mapfield.play({x: 0, y : 0}, p2)).not.be.ok();
     })
     it('should not be able to play on himself', () => {
       let mapfield:MapField = new MapField();
       let p1:Player = new Player('X');
       
-      mapfield.play(0, 0, p1);
-      should(mapfield.play(0, 0, p1)).not.be.ok();
+      mapfield.play({x: 0, y : 0}, p1);
+      should(mapfield.play({x: 0, y : 0}, p1)).not.be.ok();
     })
   })
   describe('Score', () => {
